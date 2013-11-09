@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    var size = @ViewBag.Size;
+</script>
+<script type="text/javascript" src="@Url.VersionedContent("~/Scripts/ViewModels/block.js")"></script>
+<script type="text/javascript" src="@Url.VersionedContent("~/Scripts/ViewModels/board.js")"></script>
+<script type="text/javascript" src="@Url.VersionedContent("~/Scripts/ViewModels/app.js")"></script>
+
+<div class="control-bar top" data-bind="style: { 'background-color': FirstColor }">
+    <h3 class="no-margin">Harmony (Clone)</h3>
+</div>
+<table class="board">
+    <tbody data-bind="foreach: Rows">
+        <tr data-bind="foreach: $data">
+            <td class="block" data-bind="style: { 'background-color': Color, border: 'solid 1px ' + Color() }, attr: { id: BlockId }, css: { 'selected' : Selected, 'disabled': Disabled }, click: TriggerBoardSelection ">
+                <span data-bind="html: Dots"></span>
+            </td>
+        </tr>    
+    </tbody>
+</table>
+<table class="board preview" data-bind="visible: PreviewVisible">
+    <tbody data-bind="foreach: Rows">
+        <tr data-bind="foreach: $data">
+            <td class="block" data-bind="style: { 'background-color': Color, border: 'solid 1px ' + Color() }"></td>
+        </tr>    
+    </tbody>
+</table>
+<div class="control-bar" data-bind="style: { 'background-color': LastColor }, event: { mouseover: function() { PreviewVisible(true); }, mouseout: function() { PreviewVisible(false); } }">
+    <h4 class="no-margin">Hover to see solution</h4>
+</div>
+<div class="message-box-container" data-bind="visible: Complete">
+    <div class="message-box">
+        <h3>You win!</h3>
+        <span class="reload" data-bind="click: Reset">&#x21bb;</span>
+    </div>
+</div>

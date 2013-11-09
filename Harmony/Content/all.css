@@ -1,0 +1,100 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-align: center;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+table.board {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    table-layout: fixed;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    position: absolute;
+    top: 0;
+    
+    cursor: pointer;
+}
+
+table.board.preview {}
+
+.control-bar {
+    height: 30px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.control-bar.top {
+    top: 0;
+}
+
+.block {
+    z-index: 1;
+    position: relative;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+    .block.selected {
+        box-shadow: 0 0 5px 6px #ccc;
+        z-index: 999;
+    }
+
+    .block:hover {
+        box-shadow: 0 0 5px 6px #808080;
+        z-index: 999;
+    }
+
+    .block.disabled {
+        cursor: default;
+    }
+
+        .block.disabled:hover {
+            box-shadow: none;
+        }
+
+.message-box-container {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    opacity: .6;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+.message-box {
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    z-index: 9999;
+    box-shadow: 0 0 1000px;
+    position: relative;
+    top: 30%;
+}
+
+.reload {
+    font-family: Lucida Sans Unicode;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+}
