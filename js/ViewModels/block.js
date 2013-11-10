@@ -9,19 +9,20 @@
 
     self.Color = ko.observable(color);
 
-    self.disabled = ko.observable();
-    self.Disabled = ko.computed({
-        read: function () {
+    self.disabled = ko.observable(); //private
+    self.Disabled = ko.computed({ //public
+        read: function () { // getter
             if (self.Moves() == 0) {
                 return true;
             } else {
                 return self.disabled();
             }
         },
-        write: function (val) {
+        write: function (val) { //setter
             self.disabled(val);
         }
     });
+
     self.Selected = ko.observable(false);
 
     self.Correct = ko.computed(function () {
@@ -44,6 +45,7 @@
             App.Board.SelectBlock(self, self.Selected());
         }
     }
+
     self.Select = function (block, selected) {
         if (selected && block.BlockId() != self.BlockId()) {
             if (block.Row() != self.Row() && block.Column() != self.Column()) {

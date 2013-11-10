@@ -9,7 +9,8 @@
     '#A66E00',
     '#FFA900'
     ],
-    Board: null
+    Board: null,
+    AppTitle: 'HarmonyClone'
 }
 log = true;
 
@@ -20,9 +21,10 @@ function swapNodes(a, b) {
     aparent.insertBefore(b, asibling);
 }
 
-$(function () {
-    App.Board = new Board(size);
-     
+$(function () { // document is ready
+    App.Board = new Board(size, 5);
 
+    App.Board.ApplicationTitle = ko.observable(App.AppTitle);
+     
     ko.applyBindings(App.Board);
 });

@@ -28,11 +28,15 @@ table.board {
     padding-top: 30px;
     position: absolute;
     top: 0;
-    
+    padding-left: 30px;
     cursor: pointer;
+    z-index: 1;
 }
 
-table.board.preview {}
+table.board.preview {
+    padding-left: 0px;
+    z-index: 0;
+}
 
 .control-bar {
     height: 30px;
@@ -40,6 +44,7 @@ table.board.preview {}
     position: absolute;
     bottom: 0;
     cursor: pointer;
+    z-index: 99;
 }
 
 .control-bar.top {
@@ -55,11 +60,6 @@ table.board.preview {}
 
     .block.selected {
         box-shadow: 0 0 5px 6px #ccc;
-        z-index: 999;
-    }
-
-    .block:hover {
-        box-shadow: 0 0 5px 6px #808080;
         z-index: 999;
     }
 

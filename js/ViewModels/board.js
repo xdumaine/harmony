@@ -1,4 +1,5 @@
 ﻿function Board(size, moves, maxBlockMoves) {
+
     var self = this;
     self.Size = ko.observable(size);
     self.Rows = ko.observableArray();
@@ -6,17 +7,16 @@
     self.FirstColor = ko.observable();
     self.LastColor = ko.observable();
 
-
-    
     self.Complete = ko.observable(false);
 
     self.SwapBlocks = function (blockA, blockB, moveChange) {
         if (log) {
-            console.log(blockA.BlockId(), blockB.BlockId());
+            //console.log(blockA.BlockId(), blockB.BlockId());
         }
         var nodeA = $('#' + blockA.BlockId())[0];
         var nodeB = $('#' + blockB.BlockId())[0];
         swapNodes(nodeA, nodeB);
+
         var tRow = blockA.Row();
         var tCol = blockA.Column();
         blockA.Row(blockB.Row());
@@ -27,11 +27,21 @@
         blockB.Moves(blockB.Moves() + moveChange);
         
     }
+
     self.PreviewVisible = ko.observable(false);
+    self.ShowPreview = function () {
+        self.PreviewVisible(true);
+    }
+    self.HidePreview = function () {
+        self.PreviewVisible(false);
+    }
+
     self.SelectedBlock = ko.observable();
+
+
     self.SelectBlock = function (block, selected) {
         var rows = self.Rows();
-        if (self.SelectedBlock()) {
+        if (self.SelectedBlock()) { 
             var selectedBlock = self.SelectedBlock();
             if (selectedBlock.Row() != block.Row() && selectedBlock.Column() != block.Column()) {
                 return; // verify that they're in the same row/column
@@ -46,6 +56,7 @@
 
             var items = self.Size() * self.Size();
             var itemsCorrect = 0;
+
             for (var i = 0; i < rows.length; i++) {
                 for (var j = 0; j < rows[i].length; j++) {
                     var block = rows[i][j];
@@ -72,7 +83,7 @@
 
     var rows = [];
     var colorOffset = Math.floor(Math.random() * App.Colors.length);
-    self.FirstColor(App.Colors[(0 + colorOffset) % App.Colors.length])
+    self.FirstColor(App.Colors[colorOffset]);
     for (var i = 0; i < size; i++) {
         var blocks = [];
         var color = App.Colors[(i + colorOffset) % App.Colors.length];
@@ -114,7 +125,6 @@
         self.Complete(false);
     }
 
-    var moves = 5;
     setTimeout(function () {
         for (var i = 0; i < size; i++) {
             for (var j = 0; j < size; j++) {
@@ -122,13 +132,10 @@
             }
         }
         log = false;
-        for (var i = 0; i < moves; i++) {
-            //self.SwapRandom();
-        }
-        
+        //for (var i = 0; i < moves; i++) {
+        //    self.SwapRandom();
+        //}        
     }, 50);
-
-    
 
     self.Reset = function () {
         window.location = window.location;
